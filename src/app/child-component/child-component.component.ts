@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { Employee } from '../../models/app.model';
 
 @Component({
@@ -6,17 +6,37 @@ import { Employee } from '../../models/app.model';
   templateUrl: './child-component.component.html',
   styleUrls: ['./child-component.component.scss']
 })
-export class ChildComponentComponent {
+export class ChildComponentComponent implements OnInit {
   @Input() employee: Employee;
-  @Output() employeeChange = new EventEmitter<Employee>();
+  @Output() employeeChange = new EventEmitter<Employee | null>();
+
+  editedRegularHours: number;
+  editedOvertimeHours: number;
+
+  ngOnInit() {
+    this.resetForm();
+  }
 
   onRegularHoursChange(event: number) {
-    this.employee.regularHours = event;
-    this.employeeChange.emit(this.employee);
+    this.editedRegularHours = event;
   }
 
   onOvertimeHoursChange(event: number) {
-    this.employee.overtimeHours = event;
+    this.editedOvertimeHours = event;
+  }
+
+  saveChanges() {
+    this.employee.regularHours = this.editedRegularHours;
+    this.employee.overtimeHours = this.editedOvertimeHours;
     this.employeeChange.emit(this.employee);
+  }
+
+  cancelChanges() {
+    this.employeeChange.emit(null);
+  }
+
+  private resetForm() {
+    this.editedRegularHours = this.employee.regularHours;
+    this.editedOvertimeHours = this.employee.overtimeHours;
   }
 }

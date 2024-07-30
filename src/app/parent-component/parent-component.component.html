@@ -1,0 +1,42 @@
+<div class="max-w-7xl mx-auto bg-white p-8 rounded-lg shadow-md">
+    <h1 class="text-3xl font-bold mb-6">Hello John Doe!</h1>
+    <div class="bg-gray-100 p-6 rounded-lg shadow-inner mb-6">
+        <h1 class="text-2xl font-semibold mb-4">Your Team's Cumulative Hours</h1>
+        <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
+            <div class="flex-1 bg-white p-6 rounded-lg shadow-sm">
+                <p class="text-lg font-medium text-gray-700">Regular Hours: <span class="font-bold">{{
+                        getTeamRegularHoursTotal() }}</span></p>
+            </div>
+            <div class="flex-1 bg-white p-6 rounded-lg shadow-sm">
+                <p class="text-lg font-medium text-gray-700">Overtime Hours: <span class="font-bold">{{
+                        getTeamOvertimeHoursTotal() }}</span></p>
+            </div>
+        </div>
+    </div>
+    <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
+        <section class="w-full md:w-1/2 bg-white p-6 rounded-lg shadow-lg border border-gray-200">
+            <h3 class="text-xl font-semibold mb-4">People Reporting to You</h3>
+            <div class="flex items-center py-4 space-x-4 group border-b cursor-pointer hover:bg-gray-50"
+                *ngFor="let employee of employees" (click)="selectEmployee(employee)">
+                <div class="flex-none w-10 h-10 rounded-full bg-blue-500 text-white flex items-center justify-center">
+                    {{ employee.name.charAt(0) }}
+                </div>
+                <div class="flex-grow">
+                    <p class="text-lg font-medium">{{ employee.name }}</p>
+                    <p class="text-gray-500">Regular Hours: {{ employee.regularHours }} | Overtime: {{ employee.overtimeHours }}</p>
+                </div>
+                <div class="text-right">
+                    <svg class="w-6 h-6 text-gray-500 group-hover:text-blue-500" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </div>
+            </div>
+        </section>
+        <section class="w-full md:w-1/2 bg-white p-6 rounded-lg shadow-lg border border-gray-200"
+            *ngIf="selectedEmployee !== null">
+            <h3 class="text-xl font-semibold mb-4">Edit Employee Hours</h3>
+            <app-child-component [employee]="selectedEmployee"></app-child-component>
+        </section>
+    </div>
+</div>

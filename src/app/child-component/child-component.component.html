@@ -1,0 +1,19 @@
+<div *ngIf="employee" class="bg-white p-4 rounded-lg shadow-md">
+    <h3 class="text-xl font-semibold mb-4">Editing {{employee.name}}'s Hours</h3>
+    <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="regularHours">
+            Regular Hours
+        </label>
+        <input type="number" id="regularHours" [ngModel]="employee.regularHours"
+            (ngModelChange)="onRegularHoursChange($event)"
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+    </div>
+    <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="overtimeHours">
+            Overtime Hours
+        </label>
+        <input type="number" id="overtimeHours" [ngModel]="employee.overtimeHours"
+            (ngModelChange)="onOvertimeHoursChange($event)"
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+    </div>
+</div>

@@ -35,7 +35,7 @@
         </section>
         <section class="w-full md:w-1/2 bg-white p-6 rounded-lg shadow-lg border border-gray-200 order-1 md:order-2 mb-4 md:mb-0"
             *ngIf="selectedEmployee !== null">
-            <app-child-component [employee]="selectedEmployee()!" (employeeChange)="employeeChange($event)"></app-child-component>
+            <app-child-component [(employee)]="selectedEmployee" (employeeChange)="employeeChange()"></app-child-component>
         </section>
     </div>
 </div>

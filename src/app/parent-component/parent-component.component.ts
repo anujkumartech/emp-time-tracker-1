@@ -60,6 +60,7 @@ export class ParentComponentComponent {
     this.selectedEmployee.set(employee);
   }
 
+
   // getTeamRegularHoursTotal() {
   //   let total = 0;
   //   this.employees.forEach(employee => total += employee.regularHours);
@@ -72,13 +73,16 @@ export class ParentComponentComponent {
   //   return total;
   // }
 
-  employeeChange(updatedEmployee: Employee | null) {
-    // if (updatedEmployee) {
-    //   const index = this.employees.findIndex(emp => emp.id === updatedEmployee.id);
-    //   if (index !== -1) {
-    //     this.employees[index] = updatedEmployee;
-    //   }
-    // }
-    // this.selectedEmployee = null;
+  employeeChange() {
+    if (this.selectedEmployee()) {
+      this.employees.update(employees => employees.map(employee => {
+        if (employee.id === this.selectedEmployee().id) {
+          employee.regularHours = this.selectedEmployee().regularHours;
+          employee.overtimeHours = this.selectedEmployee().overtimeHours;
+        }
+        return employee;
+      }))
+    }
+    this.selectedEmployee.set(null);
   }
 }

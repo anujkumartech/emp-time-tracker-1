@@ -1,15 +1,15 @@
 <div class="max-w-7xl mx-auto bg-white p-8 rounded-lg shadow-md">
-    <h1 class="text-3xl font-bold mb-6">Hello John Doe!</h1>
+    <h1 class="text-3xl font-bold mb-6">Hello {{managerName()}}!</h1>
     <div class="bg-gray-100 p-6 rounded-lg shadow-inner mb-6">
         <h1 class="text-2xl font-semibold mb-4">Your Team's Cumulative Hours</h1>
         <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
             <div class="flex-1 bg-white p-6 rounded-lg shadow-sm">
                 <p class="text-lg font-medium text-gray-700">Regular Hours: <span class="font-bold">{{
-                        getTeamRegularHoursTotal() }}</span></p>
+                    teamRegularHoursTotal() }}</span></p>
             </div>
             <div class="flex-1 bg-white p-6 rounded-lg shadow-sm">
                 <p class="text-lg font-medium text-gray-700">Overtime Hours: <span class="font-bold">{{
-                        getTeamOvertimeHoursTotal() }}</span></p>
+                    teamOvertimeHoursTotal() }}</span></p>
             </div>
         </div>
     </div>
@@ -17,7 +17,7 @@
         <section class="w-full md:w-1/2 bg-white p-6 rounded-lg shadow-lg border border-gray-200 order-2 md:order-1">
             <h3 class="text-xl font-semibold mb-4">People Reporting to You</h3>
             <div class="flex items-center py-4 space-x-4 group border-b cursor-pointer hover:bg-gray-50"
-                *ngFor="let employee of employees" (click)="selectEmployee(employee)">
+                *ngFor="let employee of employees()" (click)="selectEmployee(employee)">
                 <div class="flex-none w-10 h-10 rounded-full bg-blue-500 text-white flex items-center justify-center">
                     {{ employee.name.charAt(0) }}
                 </div>
@@ -35,7 +35,7 @@
         </section>
         <section class="w-full md:w-1/2 bg-white p-6 rounded-lg shadow-lg border border-gray-200 order-1 md:order-2 mb-4 md:mb-0"
             *ngIf="selectedEmployee !== null">
-            <app-child-component [employee]="selectedEmployee" (employeeChange)="employeeChange($event)"></app-child-component>
+            <app-child-component [employee]="selectedEmployee()!" (employeeChange)="employeeChange($event)"></app-child-component>
         </section>
     </div>
 </div>

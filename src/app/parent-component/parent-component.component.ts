@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal, computed } from '@angular/core';
 import { Employee } from '../../models/app.model';
 
 @Component({
@@ -7,11 +7,11 @@ import { Employee } from '../../models/app.model';
   styleUrls: ['./parent-component.component.scss']
 })
 export class ParentComponentComponent {
-  managerName = 'John Doe';
+  managerName = signal<string>('John Doe1');
 
-  selectedEmployee: Employee | null = null;
+  selectedEmployee = signal<Employee | null>(null);
 
-  employees: Employee[] = [
+  employees = signal<Employee[]>([
     {
       id: 1,
       name: 'Jon Snow',
@@ -42,31 +42,43 @@ export class ParentComponentComponent {
       regularHours: 40,
       overtimeHours: 6
     }
-  ];
+  ]);
+
+  teamRegularHoursTotal = computed(() => {
+    let total = 0;
+    this.employees().forEach(employee => total += employee.regularHours);
+    return total;
+  })
+
+  teamOvertimeHoursTotal = computed(() => {
+    let total = 0;
+    this.employees().forEach(employee => total += employee.overtimeHours);
+    return total;
+  })
 
   selectEmployee(employee: Employee): void {
-    this.selectedEmployee = employee;
+    this.selectedEmployee.set(employee);
   }
 
-  getTeamRegularHoursTotal() {
-    let total = 0;
-    this.employees.forEach(employee => total += employee.regularHours);
-    return total;
-  }
+  // getTeamRegularHoursTotal() {
+  //   let total = 0;
+  //   this.employees.forEach(employee => total += employee.regularHours);
+  //   return total;
+  // }
 
-  getTeamOvertimeHoursTotal() {
-    let total = 0;
-    this.employees.forEach(employee => total += employee.overtimeHours);
-    return total;
-  }
+  // getTeamOvertimeHoursTotal() {
+  //   let total = 0;
+  //   this.employees.forEach(employee => total += employee.overtimeHours);
+  //   return total;
+  // }
 
   employeeChange(updatedEmployee: Employee | null) {
-    if (updatedEmployee) {
-      const index = this.employees.findIndex(emp => emp.id === updatedEmployee.id);
-      if (index !== -1) {
-        this.employees[index] = updatedEmployee;
-      }
-    }
-    this.selectedEmployee = null;
+    // if (updatedEmployee) {
+    //   const index = this.employees.findIndex(emp => emp.id === updatedEmployee.id);
+    //   if (index !== -1) {
+    //     this.employees[index] = updatedEmployee;
+    //   }
+    // }
+    // this.selectedEmployee = null;
   }
 }

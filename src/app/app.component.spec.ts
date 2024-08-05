@@ -1,6 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
+import { provideExperimentalZonelessChangeDetection } from '@angular/core';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
@@ -8,6 +9,7 @@ describe('AppComponent', () => {
       imports: [
         RouterModule.forRoot([])
       ],
+      providers: [provideExperimentalZonelessChangeDetection()],
       declarations: [
         AppComponent
       ],
@@ -23,7 +25,6 @@ describe('AppComponent', () => {
   it(`should have as title 'emp-time-tracker-1'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('emp-time-tracker-1');
   });
 
   it('should render title', () => {

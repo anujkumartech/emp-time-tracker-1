@@ -18,6 +18,7 @@
     "importHelpers": true,
     "target": "ES2022",
     "strictPropertyInitialization": false,
+    "strictNullChecks": false,
     "module": "ES2022",
     "lib": [
       "ES2022",

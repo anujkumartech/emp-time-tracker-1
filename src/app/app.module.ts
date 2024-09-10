@@ -4,8 +4,8 @@ import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ParentComponentComponent } from './parent-component/parent-component.component';
-import { ChildComponentComponent } from './child-component/child-component.component';
+import { ParentComponentComponent } from './parent-component/parent-component';
+import { ChildComponentComponent } from './child-component/child-component';
 
 @NgModule({
   declarations: [

@@ -3,8 +3,8 @@ import { Employee } from '../../models/app.model';
 
 @Component({
   selector: 'app-child-component',
-  templateUrl: './child-component.component.html',
-  styleUrls: ['./child-component.component.scss']
+  templateUrl: './child-component.html',
+  styleUrls: ['./child-component.scss']
 })
 export class ChildComponentComponent implements OnInit {
   @Input() employee: Employee;

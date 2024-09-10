@@ -3,8 +3,8 @@ import { Employee } from '../../models/app.model';
 
 @Component({
   selector: 'app-parent-component',
-  templateUrl: './parent-component.component.html',
-  styleUrls: ['./parent-component.component.scss']
+  templateUrl: './parent-component.html',
+  styleUrls: ['./parent-component.scss']
 })
 export class ParentComponentComponent {
   managerName = 'John Doe';
